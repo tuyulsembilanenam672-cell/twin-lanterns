@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Twin Lanterns — Spot the Difference</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="src/style.css">
+</head>
+<body>
+<main class="shell">
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark">🏮</span>
+      <span class="brand-name">Twin Lanterns</span>
+      <span class="brand-sub">spot the difference</span>
+    </div>
+    <div class="hud">
+      <div class="hud-item"><span class="hud-label">Scene</span><span id="scene-name" class="hud-value">1 · Lantern Market</span></div>
+      <div class="hud-item"><span class="hud-label">Time</span><span id="timer" class="hud-value">2:30</span></div>
+      <div class="hud-item"><span class="hud-label">Score</span><span id="score" class="hud-value">0</span></div>
+      <div class="hud-item"><span class="hud-label">Best</span><span id="best" class="hud-value">0</span></div>
+    </div>
+  </header>
+
+  <div class="timebar"><div id="time-fill"></div></div>
+
+  <section class="counter-row">
+    <div class="counter">
+      <span class="counter-big"><span id="remain-count">7</span> remain</span>
+      <span class="counter-small">Found <span id="found-count">0</span> of 7 differences</span>
+    </div>
+    <div id="dots" class="dots" aria-label="Differences found"></div>
+    <div class="counter-actions">
+      <button id="hint-btn" class="btn btn-small">Hint (H) · <span id="hints-left">3</span> left</button>
+      <button id="mute-btn" class="btn btn-small">Sound: on (M)</button>
+      <button id="pause-btn" class="btn btn-small">Pause (P)</button>
+    </div>
+  </section>
+
+  <section id="play-area" class="play-area">
+    <figure class="panel-wrap">
+      <figcaption>Left picture</figcaption>
+      <canvas id="left-panel"></canvas>
+    </figure>
+    <div class="versus">VS</div>
+    <figure class="panel-wrap">
+      <figcaption>Right picture</figcaption>
+      <canvas id="right-panel"></canvas>
+    </figure>
+  </section>
+
+  <div id="log" class="log" aria-live="polite"></div>
+
+  <footer class="keys">
+    <span>Click a difference on either picture</span>
+    <span>Arrows move the reticle · Tab switches picture · Enter marks</span>
+    <span>H hint · M sound · R restart scene · P pause</span>
+  </footer>
+
+  <!-- Start screen -->
+  <div id="start-screen" class="overlay">
+    <div class="card">
+      <div class="card-mark">🏮 🏮</div>
+      <h1>Twin Lanterns</h1>
+      <p class="tagline">Two pictures. Seven differences. One sharp pair of eyes.</p>
+      <p>Study the two pictures side by side and click every difference you
+      spot — on either picture. A wrong click costs 3 seconds and 10 points.
+      Hints cost 30 points. Finish all three scenes before the lanterns
+      burn down.</p>
+      <div class="scene-list">
+        <button class="scene-pick" data-scene="0"><strong>1 · Lantern Market</strong><span>Night market, paper lanterns and one sleepy cat</span></button>
+        <button class="scene-pick" data-scene="1"><strong>2 · The Old Greenhouse</strong><span>Morning light, seedlings and a butterfly</span></button>
+        <button class="scene-pick" data-scene="2"><strong>3 · Lighthouse Cove</strong><span>Dusk at the cove, gulls over the boats</span></button>
+      </div>
+      <button id="start-btn" class="btn btn-big">Play all three scenes</button>
+      <p class="hint-line">Press Enter to start · keys 1–3 jump to a scene</p>
+    </div>
+  </div>
+
+  <!-- Scene clear -->
+  <div id="scene-clear-screen" class="overlay hidden">
+    <div class="card">
+      <h1 id="clear-title">Scene complete!</h1>
+      <p id="clear-detail"></p>
+      <p id="clear-score" class="score-line"></p>
+      <button id="next-btn" class="btn btn-big">Next scene</button>
+    </div>
+  </div>
+
+  <!-- Win -->
+  <div id="win-screen" class="overlay hidden">
+    <div class="card">
+      <h1>You found them all!</h1>
+      <div id="win-stars" class="stars">★★★</div>
+      <p id="win-score" class="score-line"></p>
+      <p id="win-found"></p>
+      <p id="win-best"></p>
+      <button id="again-btn" class="btn btn-big">Play again</button>
+    </div>
+  </div>
+
+  <!-- Lose -->
+  <div id="lose-screen" class="overlay hidden">
+    <div class="card">
+      <h1>Time ran out</h1>
+      <p id="lose-detail"></p>
+      <button id="lose-retry-btn" class="btn btn-big">Retry this scene</button>
+      <button id="quit-btn" class="btn">Back to start</button>
+    </div>
+  </div>
+
+  <!-- Pause -->
+  <div id="pause-screen" class="overlay hidden">
+    <div class="card">
+      <h1>Paused</h1>
+      <p>Take a breath. The differences will wait.</p>
+      <button id="resume-btn" class="btn btn-big">Resume</button>
+      <button id="restart-btn" class="btn">Restart scene</button>
+    </div>
+  </div>
+</main>
+<script type="module" src="src/main.js"></script>
+</body>
+</html>
